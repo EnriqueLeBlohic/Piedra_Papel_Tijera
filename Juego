@@ -1,0 +1,46 @@
+import numpy as np
+import time
+
+def Pied_Tije_Papel():
+    # Opciones asignadas a lo que vencen
+    opciones = {'piedra': 'tijera', 'tijera': 'papel', 'papel': 'piedra'}
+
+    intentos = 3
+    victorias_jugador = 0
+
+    # la entrada del jugador
+    while intentos > 0:
+        jugador = input("Escribe piedra, tijera o papel: ").lower()
+        while jugador not in {'piedra', 'tijera', 'papel'}:
+            print("Cometiste un error... ")
+            jugador = input("Escribe piedra, tijera o papel: ").lower()
+
+    # seleccion aleatoria de la computadora
+        computadora = np.random.choice(['piedra','tijera','papel'])
+
+        #Mostrar las selecciones
+        time.sleep(0.5)
+        print("\n Has seleccionado:", jugador)
+        print("La computadora ha seleccionado:", computadora, '\n')
+        time.sleep(2)
+
+        if jugador == computadora:
+            print("EMPATE, se salta el turno", '\n')
+            victorias_jugador +=0
+            intentos +=0
+        elif opciones[jugador] == computadora:
+            print("¡Has ganado este intento!", '\n')
+            victorias_jugador +=1
+            intentos -=1
+        elif opciones[computadora] == jugador:
+            print("Has pedido este intento", '\n')
+        intentos -=1
+
+    if victorias_jugador >= 2:
+        print("!!!!Felicidades Has ganado¡¡¡¡ ")
+    else:
+        print("Has perdido, lo siento")
+
+
+if __name__ == '__main__':
+    Pied_Tije_Papel()
